@@ -18,7 +18,7 @@ namespace UsersAPI.Business
         public User Retrieve(int id)
         {
             return _context.Users.Where(
-                    u => u.Id == id).FirstOrDefault();
+                    u => u.UserId == id).FirstOrDefault();
             
         }
 
@@ -58,7 +58,7 @@ namespace UsersAPI.Business
             if (result.Inconsistencies.Count == 0)
             {
                 User user = _context.Users.Where(
-                    u => u.Id == userData.Id).FirstOrDefault();
+                    u => u.UserId == userData.UserId).FirstOrDefault();
 
                 if (user == null)
                 {

@@ -35,19 +35,27 @@ namespace UsersAPI
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<UsersDBContext>(options => options.UseInMemoryDatabase("InMemoryDatabase"));
+            services.AddDbContext<UsersDBContext>(options => options.UseInMemoryDatabase("InMemoryDatabaseUser"));
             services.AddScoped<UserService>();
+            services.AddDbContext<RatingsDBContext>(options => options.UseInMemoryDatabase("InMemoryDatabaseRating"));
+            services.AddScoped<RatingService>();
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserService usrService)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserService usrService, RatingService ratService)
         {
+            /* usrService.Add(
+                new User() { UserId = 1, Name="Administrador", Email = "admin@test.com" });
             usrService.Add(
-                new User() { Id = 1, Name="Administrador", Email = "admin@test.com" });
-            usrService.Add(
-                new User() { Id = 2, Name="Usuário comum", Email = "standard@test.com" });
+                new User() { UserId = 2, Name="Usuário comum", Email = "standard@test.com" });
 
+            ratService.Add(
+                new Rating() { UserId = 1, RatingId = 2, Score = 1, Type="Music", MusicId = 1 });
+            ratService.Add(
+                new Rating() { UserId=2, RatingId = 1, Score = 3, Type="Lyric", MusicId = 3 });
+ */
 
             if (env.IsDevelopment())
             {
