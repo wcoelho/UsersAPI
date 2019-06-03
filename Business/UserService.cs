@@ -28,6 +28,12 @@ namespace UsersAPI.Business
                 .OrderBy(u => u.Name).ToList();
         }
 
+        
+        public string StoreSpotifyToken(string token)
+        {
+            return token;
+        }
+
         public Result Add(User userData)
         {
             Result resultado = ValidateData(userData);
