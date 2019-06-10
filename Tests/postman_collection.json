@@ -1,0 +1,591 @@
+{
+	"info": {
+		"_postman_id": "2c74ecb9-078b-4ba3-90b6-8a17a641cead",
+		"name": "User Management API",
+		"description": "API para cadastro/gerenciamento de veículos.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Limpa variáveis",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9abdb3e7-4446-455f-928f-0dd20375b2dd",
+						"exec": [
+							"pm.globals.clear()"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "HEAD",
+				"header": [],
+				"url": {
+					"raw": "https://{{ADDRESS}}:{{PORT}}",
+					"protocol": "https",
+					"host": [
+						"{{ADDRESS}}"
+					],
+					"port": "{{PORT}}"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cria Usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5e356dcb-b59f-47c0-b08b-dea00dd93281",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"var id = jsonData.id;",
+							"pm.globals.set(\"id\", id);",
+							"",
+							"pm.test(\"Usuário criado com sucesso!\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Walter Coelho\",\n    \"email\": \"wcoelho@gmail.com\",\n    \"spotifyToken\": \"\"\n}"
+				},
+				"url": {
+					"raw": "https://{{ADDRESS}}:{{PORT}}/api/{{API_VERSION}}/usuarios",
+					"protocol": "https",
+					"host": [
+						"{{ADDRESS}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"{{API_VERSION}}",
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cria Usuário Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5e356dcb-b59f-47c0-b08b-dea00dd93281",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"var id = jsonData.id;",
+							"pm.globals.set(\"id\", id);",
+							"",
+							"pm.test(\"Usuário criado com sucesso!\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Segundo nome\",\n    \"email\": \"novoemail2@test.com\",\n    \"spotifyToken\": \"\"\n}"
+				},
+				"url": {
+					"raw": "https://{{ADDRESS}}:{{PORT}}/api/{{API_VERSION}}/usuarios",
+					"protocol": "https",
+					"host": [
+						"{{ADDRESS}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"{{API_VERSION}}",
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cria Reputação",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5e356dcb-b59f-47c0-b08b-dea00dd93281",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"var id = jsonData.id;",
+							"pm.globals.set(\"id\", id);",
+							"",
+							"pm.test(\"Usuário criado com sucesso!\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"musicId\": 1,  \n        \"playlistId\": 2,  \n        \"artistId\": 1,\n        \"userId\": 1,\n        \"type\": \"Lyric\",    \n        \"score\": 4,\n        \"comment\": \"Comentário\"\n}"
+				},
+				"url": {
+					"raw": "https://{{ADDRESS}}:{{PORT}}/api/{{API_VERSION}}/avaliacoes",
+					"protocol": "https",
+					"host": [
+						"{{ADDRESS}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"{{API_VERSION}}",
+						"avaliacoes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cria Reputação Para Playlist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5e356dcb-b59f-47c0-b08b-dea00dd93281",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"var id = jsonData.id;",
+							"pm.globals.set(\"id\", id);",
+							"",
+							"pm.test(\"Usuário criado com sucesso!\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"musicId\": 1,  \n        \"playlistId\": 2,  \n        \"artistId\": 1,\n        \"userId\": 1,\n        \"type\": \"Playlist\",    \n        \"score\": 4,\n        \"comment\": \"Comentário\"\n}"
+				},
+				"url": {
+					"raw": "https://{{ADDRESS}}:{{PORT}}/api/{{API_VERSION}}/avaliacoes",
+					"protocol": "https",
+					"host": [
+						"{{ADDRESS}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"{{API_VERSION}}",
+						"avaliacoes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cria Usuário Existente - retorna erro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5e356dcb-b59f-47c0-b08b-dea00dd93281",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"var _success = jsonData.success;",
+							"",
+							"pm.test(\"Usuário criado com sucesso!\", function () {",
+							"    pm.expect(_success).to.eql(false);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Novo nome\",\n    \"email\": \"novoemail@test.com\"\n}"
+				},
+				"url": {
+					"raw": "https://{{ADDRESS}}:{{PORT}}/api/{{API_VERSION}}/usuarios",
+					"protocol": "https",
+					"host": [
+						"{{ADDRESS}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"{{API_VERSION}}",
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recupera Lista de Usuários",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0e7e7877-0db3-4f45-94f6-144d6a61dd53",
+						"exec": [
+							"pm.test(\"Usuário(s) encontrado(s) ou lista vazia\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{ADDRESS}}:{{PORT}}/api/{{API_VERSION}}/usuarios",
+					"protocol": "https",
+					"host": [
+						"{{ADDRESS}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"{{API_VERSION}}",
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recupera Usuário Específico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "add78b98-2bf5-4f53-8f46-7b521666140b",
+						"exec": [
+							"pm.test(\"Usuário encontrado!\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{ADDRESS}}:{{PORT}}/api/{{API_VERSION}}/usuarios/1",
+					"protocol": "https",
+					"host": [
+						"{{ADDRESS}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"{{API_VERSION}}",
+						"usuarios",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recupera Usuário com Id inválido - retorna \"400 Not Found\"",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3f256802-a20c-4f0f-9ca9-466177d0025f",
+						"exec": [
+							"pm.test(\"Usuário não encontrado!\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([404]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{ADDRESS}}:{{PORT}}/api/{{API_VERSION}}/usuarios/idInvalido",
+					"protocol": "https",
+					"host": [
+						"{{ADDRESS}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"{{API_VERSION}}",
+						"usuarios",
+						"idInvalido"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualiza dados de Usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3208802e-7ab4-412e-9690-c849414adfcc",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"var _result = jsonData.success;",
+							"",
+							"pm.test(\"Dados do Usuário atualizados com sucesso!\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+							"    pm.expect(_result).to.eql(true);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\": 1,\n\t\"name\": \"Walter Coelho\",\n    \"email\": \"wcoelho@gmail.com\",\n    \"spotifyToken\": \"12131312314\"\n}"
+				},
+				"url": {
+					"raw": "https://{{ADDRESS}}:{{PORT}}/api/{{API_VERSION}}/usuarios",
+					"protocol": "https",
+					"host": [
+						"{{ADDRESS}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"{{API_VERSION}}",
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualiza dados de Usuário com Id inválido - retorna \"400 Not Found\"",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9b9d5af0-558f-4d77-bf9a-c9bbe9ff743d",
+						"exec": [
+							"pm.test(\"Id inexistente!\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([404]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\": 1000,\n\t\"name\": \"Novo nome\",\n    \"email\": \"novoemail@test.com\"\n}"
+				},
+				"url": {
+					"raw": "https://{{ADDRESS}}:{{PORT}}/api/{{API_VERSION}}/usuarios",
+					"protocol": "https",
+					"host": [
+						"{{ADDRESS}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"{{API_VERSION}}",
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Apaga Usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2ff711b3-2e55-4ac3-8258-f4433f0d512c",
+						"exec": [
+							"pm.test(\"Registro do Usuário apagado com sucesso!\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{ADDRESS}}:{{PORT}}/api/{{API_VERSION}}/usuarios/1",
+					"protocol": "https",
+					"host": [
+						"{{ADDRESS}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"{{API_VERSION}}",
+						"usuarios",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Apaga Usuário com id inexistente - retorna sucesso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f19ef097-ea5d-47d1-863a-e40da1d4004b",
+						"exec": [
+							"pm.test(\"Usuário não encontrado\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{ADDRESS}}:{{PORT}}/api/{{API_VERSION}}/usuarios/1000",
+					"protocol": "https",
+					"host": [
+						"{{ADDRESS}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"api",
+						"{{API_VERSION}}",
+						"usuarios",
+						"1000"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
