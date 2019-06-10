@@ -15,23 +15,21 @@ namespace UsersAPI.Business
             _context = context;
         }
 
+        public User RetrieveByEmail(string email)
+        {
+            return _context.Users.Where(
+                u => u.Email == email).FirstOrDefault();  
+        }
+     
         public User Retrieve(int id)
         {
             return _context.Users.Where(
-                    u => u.UserId == id).FirstOrDefault();
-            
+                u => u.UserId == id).FirstOrDefault();            
         }
-
         public IEnumerable<User> ListAll()
         {
             return _context.Users
                 .OrderBy(u => u.Name).ToList();
-        }
-
-        
-        public string StoreSpotifyToken(string token)
-        {
-            return token;
         }
 
         public Result Add(User userData)
@@ -56,6 +54,21 @@ namespace UsersAPI.Business
             return resultado;
         }
 
+        public Result UpdateToken(User user, string token)
+        {
+            Result result = ValidateData(user);
+            result.Action = "Atualização de token de Usuário";
+
+            if (result.Inconsistencies.Count == 0)
+            {
+                user.SpotifyToken = token;
+                _context.SaveChanges();
+                
+            }
+
+            return result;
+        }
+
         public Result Update(User userData)
         {
             Result result = ValidateData(userData);
@@ -75,6 +88,7 @@ namespace UsersAPI.Business
                 {
                     user.Name = userData.Name;
                     user.Email = userData.Email;
+                    user.SpotifyToken = userData.SpotifyToken;
                     _context.SaveChanges();
                 }
             }

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
   
 namespace UsersAPI.Controllers  
 {  
-    [Route("api/v1/[controller]")]
+    [Route("api/v1/usuarios")]
     public class UsersController : Controller
     {
         private UserService _service;
@@ -17,11 +17,20 @@ namespace UsersAPI.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<User> Get()
+        public IEnumerable<User> Get([FromQuery(Name = "email")] string email, [FromQuery(Name = "access_token")] string token)
         {
+            if(email != null)
+            {
+                var user = _service.RetrieveByEmail(email);
+                if(user!=null)
+                {                    
+                    _service.UpdateToken(user, token);
+                }
+                return new User[] { user };
+            }
+        
             return _service.ListAll();
         }
-
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {

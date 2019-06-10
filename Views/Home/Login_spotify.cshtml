@@ -1,6 +1,6 @@
     <div class="container">
       <div id="login">
-        <h3>Precisamos que você faça login no Spotify para acessar suas músicas preferidas!</h3>
+        <h3>Precisamos que você faça login no Spotify para oferecermos uma experiência incrível!</h3>
         <p style="text-align:center">
             <button id="login-button" class="btn btn-primary">Login</button>
         </p>
@@ -30,7 +30,7 @@
             <dt>País</dt><dd>{{country}}</dd>
           </dl>
           <p style="text-align:center">
-            <button id="save-button" class="btn btn-primary">Salvar Token</button>
+            <button id="getin-button" class="btn btn-primary" onclick="getIn('{{email}}')">Entrar</button>
           </p>
         </div>
       </div>
@@ -45,6 +45,13 @@
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script>
+        function getIn(email) {
+          var url = 'https://localhost:5001/api/v1/usuarios/';
+
+          window.location = url+"?email=" + email + "&access_token="+ window.accessToken;              
+        }
+    </script>
     <script>
       (function() {
 
@@ -84,6 +91,8 @@
             state = params.state,
             storedState = localStorage.getItem(stateKey);
 
+        window.accessToken = access_token;
+
         localStorage.setItem(accessToken,access_token);
 
         if (access_token && (state == null || state !== storedState)) {
@@ -91,6 +100,7 @@
         } else {
           localStorage.removeItem(stateKey);
           if (access_token) {
+        
             $.ajax({
                 url: 'https://api.spotify.com/v1/me',
                 headers: {
@@ -127,14 +137,8 @@
 
             window.location = url;
           }, false);
+        }        
 
-          document.getElementById('save-button').addEventListener('click', function() {
-
-            var url = 'https://localhost:5001/api/v1/callback/'; // Your redirect uri
-            var token = localStorage.getItem(accessToken);
-
-            window.location = url+token;
-          }, false);
-        }
       })();
     </script>
+    

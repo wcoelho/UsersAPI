@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
   
 namespace UsersAPI.Controllers  
 {  
-    [Route("api/v1/[controller]")]
+    [Route("api/v1/avaliacoes")]
     public class RatingsController : Controller
     {
         private RatingService _service;
