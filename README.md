@@ -1,5 +1,6 @@
-# UsersAPI
-Users Management API  
+# UsersAndRatingsAPI
+Users and Music Ratings Management API 
+Powered by Spotify
 
 Sequência de ações:  
 1 - Usuário acessa a solução.  
