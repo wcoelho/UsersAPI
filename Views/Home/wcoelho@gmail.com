@@ -47,7 +47,7 @@
     <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script>
         function getIn(email) {
-          var url = 'http://localhost:6001/api/v1/usuarios/';
+          var url = 'https://localhost:5001/api/v1/usuarios/';
 
           window.location = url+"?email=" + email + "&access_token="+ window.accessToken;              
         }
@@ -121,7 +121,7 @@
           document.getElementById('login-button').addEventListener('click', function() {
 
             var client_id = '135ea3abc6e44233aedde94780926052'; // Your client id
-            var redirect_uri = 'http://localhost:6001'; // Your redirect uri
+            var redirect_uri = 'https://localhost:5001'; // Your redirect uri
 
             var state = generateRandomString(16);
 
